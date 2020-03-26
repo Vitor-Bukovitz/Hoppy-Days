@@ -1,8 +1,8 @@
 extends Node2D
 
-const WORLD_LIMIT = 4000
 var lives = 3
-
+var coins = 0
+var target_number_of_coins = 10
 
 func _ready():
 	add_to_group("Gamestate")
@@ -18,7 +18,20 @@ func hurt():
 
 
 func update_GUI():
-	get_tree().call_group("GUI", "update_lives", lives)
+	get_tree().call_group("GUI", "update_GUI", lives, coins)
+
+
+func coin_up():
+	coins += 1
+	update_GUI()
+	var multiple_of_coins = (coins % target_number_of_coins) == 0
+	if multiple_of_coins:
+		life_up()
+
+
+func life_up():
+	lives += 1
+	update_GUI()
 
 
 func end_game():
