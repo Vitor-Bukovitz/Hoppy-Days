@@ -12,7 +12,7 @@ const BOOST_MULTIPLIER = 1.5
 
 signal animate
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	apply_gravity()
 	jump()
 	move()
